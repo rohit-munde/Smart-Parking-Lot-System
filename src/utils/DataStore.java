@@ -44,7 +44,7 @@ public class DataStore<T> {
 //        data.values().forEach(System.out::println);
         var allTs = readAll();
         if (allTs.isEmpty()) {
-            System.out.println("No Ts in library.");
+            System.out.println("No " + modelLabel + "s in library.");
             return;
         }
         System.out.println("\n--- All " + modelLabel + "s ---");

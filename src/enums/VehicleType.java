@@ -14,4 +14,13 @@ public enum VehicleType {
     public int getRatePerMinute() {
         return ratePerMinute;
     }
+
+    public static VehicleType getVehicleTypeFromChoice(int choice) {
+        return switch (choice) {
+            case 1 -> TRUCK;
+            case 2 -> CAR;
+            case 3 -> MOTORCYCLE;
+            default -> throw new IllegalArgumentException("Invalid choice for VehicleType: " + choice);
+        };
+    }
 }

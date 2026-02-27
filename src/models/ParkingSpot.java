@@ -12,7 +12,8 @@ public class ParkingSpot {
     public ParkingSpot() {}
 
     public ParkingSpot(VehicleType spotType, boolean isOccupied) {
-        this.isOccupied = false; // default to available
+        this.spotType = spotType;
+        this.isOccupied = isOccupied;
     }
 
     public int getId() {
@@ -45,5 +46,16 @@ public class ParkingSpot {
 
     public void setSpotType(VehicleType spotType) {
         this.spotType = spotType;
+    }
+
+    @Override
+    public String toString() {
+        System.out.printf("%n%-8s %-6s %-12s %-10s%n", "SpotId", "FLOOR", "TYPE", "OCCUPIED");
+        System.out.println("--------------------------------------");
+        return String.format("%-8d %-6d %-12s %-10s",
+                this.id,
+                this.floor,
+                this.spotType,
+                this.isOccupied);
     }
 }

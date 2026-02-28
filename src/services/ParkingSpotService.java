@@ -4,6 +4,7 @@ import enums.VehicleType;
 import models.ParkingSpot;
 import utils.DataStore;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 public class ParkingSpotService {
@@ -92,14 +93,21 @@ public class ParkingSpotService {
                 .orElse(-1);
     }
 
-    public ParkingSpot assignSpot(int spotId) {
+    public ParkingSpot assignSpot(int spotId, int vehicleId) {
         ensureStoreReady();
         ParkingSpot spot = parkingSpotStore.read(spotId);
         if (spot != null && !spot.isOccupied()) {
             spot.setOccupied(true);
+            spot.setVehicleId(vehicleId);
+            spot.setCheckInTime(System.currentTimeMillis());
             parkingSpotStore.update(spotId, spot);
             return spot;
         }
         return null;
+    }
+
+    public ParkingSpot GetParkingSpotById(int spotId) {
+        ensureStoreReady();
+        return parkingSpotStore.read(spotId);
     }
 }

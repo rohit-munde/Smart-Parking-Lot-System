@@ -14,7 +14,7 @@ public class ParkingAllocationService {
         Vehicle vehicle = getVehicleDetailsFromUser();
         int spotId = parkingSpotService.findAppropriateSpot(vehicle.getVehicleType());
         if (spotId > 0) {
-            ParkingSpot parkingSpot = parkingSpotService.assignSpot(spotId);
+            ParkingSpot parkingSpot = parkingSpotService.assignSpot(spotId, vehicle.getId());
             System.out.println("\n✅ Parking Spot Allocated Successfully!");
             System.out.println(parkingSpot.toString());
         } else {

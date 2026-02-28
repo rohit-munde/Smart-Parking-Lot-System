@@ -11,9 +11,10 @@ public class Ticket {
 
     public Ticket() {}
 
-    public Ticket(int vehicleId, long entryTime, double totalFare) {
+    public Ticket(int vehicleId, long entryTime, long exitTime, double totalFare) {
         this.vehicleId = vehicleId;
         this.entryTime = entryTime;
+        this.exitTime = exitTime;
         this.totalFare = totalFare;
     }
 
@@ -55,5 +56,33 @@ public class Ticket {
 
     public void setTotalFare(double totalFare) {
         this.totalFare = totalFare;
+    }
+
+    @Override
+    public String toString() {
+        String entryTimeFormatted = java.time.Instant.ofEpochMilli(entryTime)
+                .atZone(java.time.ZoneId.systemDefault())
+                .format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        String exitTimeFormatted = java.time.Instant.ofEpochMilli(exitTime)
+                .atZone(java.time.ZoneId.systemDefault())
+                .format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        long durationMinutes = (exitTime - entryTime) / (1000 * 60);
+
+        return String.format("""
+                +------------------------------------+
+                |        PARKING RECEIPT             |
+                +------------------------------------+
+                |  Ticket ID    :  %-17d |
+                |  Vehicle ID   :  %-17d |
+                +------------------------------------+
+                |  Entry Time   :                    |
+                |    %-30s  |
+                |  Exit Time    :                    |
+                |    %-30s  |
+                |  Duration     :  %-14d min|
+                +------------------------------------+
+                |  TOTAL FARE   :  Rs %-14.2f |
+                +------------------------------------+
+                """, id, vehicleId, entryTimeFormatted, exitTimeFormatted, durationMinutes, totalFare);
     }
 }

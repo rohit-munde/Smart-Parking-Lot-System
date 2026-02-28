@@ -1,3 +1,4 @@
+import services.CheckoutService;
 import services.ParkingAllocationService;
 import utils.ErrorHandler;
 
@@ -5,6 +6,7 @@ import utils.ErrorHandler;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     private final static ParkingAllocationService parkingAllocationService = new ParkingAllocationService();
+    private final static CheckoutService checkoutService = new CheckoutService();
     public static void main(String[] args) {
 
         utils.DataStore<models.ParkingSpot> parkingSpotStore = new utils.DataStore<>("Parking Spot");
@@ -20,6 +22,7 @@ public class Main {
                 System.out.println("\n--- Parking Lot Management ---");
                 System.out.println("1. View Parking Spots");
                 System.out.println("2. Book a Parking Spot");
+                System.out.println("3. Checkout from Parking Spot");
                 System.out.println("0. Exit");
                 System.out.print("Enter your choice: ");
 
@@ -28,6 +31,7 @@ public class Main {
                 switch (choice) {
                     case 1 -> parkingSpotService.printSpotTable();
                     case 2 -> parkingAllocationService.allocateParkingSpot();
+                    case 3 -> checkoutService.checkoutFromParkingSpot();
                     case 0 -> {
                         System.out.println("Exiting...");
                         running = false;

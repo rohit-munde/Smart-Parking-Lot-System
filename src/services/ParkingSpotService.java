@@ -93,12 +93,19 @@ public class ParkingSpotService {
                 .orElse(-1);
     }
 
-    public ParkingSpot assignSpot(int spotId, int vehicleId) {
+    public boolean isVehicleAlreadyParked(String vehicleNo) {
+        ensureStoreReady();
+        return parkingSpotStore.readAll().values().stream()
+                .anyMatch(spot -> spot.isOccupied() && vehicleNo.equalsIgnoreCase(spot.getVehicleNo()));
+    }
+
+    public ParkingSpot assignSpot(int spotId, int vehicleId, String vehicleNo) {
         ensureStoreReady();
         ParkingSpot spot = parkingSpotStore.read(spotId);
         if (spot != null && !spot.isOccupied()) {
             spot.setOccupied(true);
             spot.setVehicleId(vehicleId);
+            spot.setVehicleNo(vehicleNo);
             spot.setCheckInTime(System.currentTimeMillis());
             parkingSpotStore.update(spotId, spot);
             return spot;

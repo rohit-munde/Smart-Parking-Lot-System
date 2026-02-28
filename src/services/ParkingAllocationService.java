@@ -12,9 +12,15 @@ public class ParkingAllocationService {
 
     public void allocateParkingSpot() {
         Vehicle vehicle = getVehicleDetailsFromUser();
+
+        // Check if vehicle is already parked
+        if (parkingSpotService.isVehicleAlreadyParked(vehicle.getVehicleNo())) {
+            throw new RuntimeException("Vehicle with registration " + vehicle.getVehicleNo() + " is already parked!");
+        }
+
         int spotId = parkingSpotService.findAppropriateSpot(vehicle.getVehicleType());
         if (spotId > 0) {
-            ParkingSpot parkingSpot = parkingSpotService.assignSpot(spotId, vehicle.getId());
+            ParkingSpot parkingSpot = parkingSpotService.assignSpot(spotId, vehicle.getId(), vehicle.getVehicleNo());
             System.out.println("\n✅ Parking Spot Allocated Successfully!");
             System.out.println(parkingSpot.toString());
         } else {

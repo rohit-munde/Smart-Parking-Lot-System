@@ -6,6 +6,7 @@ import utils.IdGenerator;
 public class ParkingSpot {
     private int id = IdGenerator.generateParkingSpotId();
     private int vehicleId;
+    private String vehicleNo;
     private int floor;
     private VehicleType spotType;
     private boolean isOccupied;
@@ -34,6 +35,14 @@ public class ParkingSpot {
 
     public void setVehicleId(int vehicleId) {
         this.vehicleId = vehicleId;
+    }
+
+    public String getVehicleNo() {
+        return vehicleNo;
+    }
+
+    public void setVehicleNo(String vehicleNo) {
+        this.vehicleNo = vehicleNo;
     }
 
     public boolean isOccupied() {

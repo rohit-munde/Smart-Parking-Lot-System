@@ -28,6 +28,7 @@ public class Main {
                 System.out.print("Enter your choice: ");
 
                 int choice = scanner.nextInt();
+                scanner.nextLine(); // Consume leftover newline
 
                 switch (choice) {
                     case 1 -> parkingSpotService.printSpotTable();

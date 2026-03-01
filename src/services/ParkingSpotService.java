@@ -4,7 +4,6 @@ import enums.VehicleType;
 import models.ParkingSpot;
 import utils.DataStore;
 
-import java.time.LocalDateTime;
 import java.util.Map;
 
 public class ParkingSpotService {
@@ -116,5 +115,17 @@ public class ParkingSpotService {
     public ParkingSpot getParkingSpotById(int spotId) {
         ensureStoreReady();
         return parkingSpotStore.read(spotId);
+    }
+
+    public void vacateSpot(int spotId) {
+        ensureStoreReady();
+        ParkingSpot spot = parkingSpotStore.read(spotId);
+        if (spot != null && spot.isOccupied()) {
+            spot.setOccupied(false);
+            spot.setVehicleId(0);
+            spot.setVehicleNo(null);
+            spot.setCheckInTime(0);
+            parkingSpotStore.update(spotId, spot);
+        }
     }
 }

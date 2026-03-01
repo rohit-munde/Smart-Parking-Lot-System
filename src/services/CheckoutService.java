@@ -14,8 +14,9 @@ public class CheckoutService {
 
     public void checkoutFromParkingSpot() {
         ParkingSpot spot = takeUserInputForCheckout();
-        double totalFare = FareCalculationService.getInstance().calculateFare(spot.getCheckInTime(), System.currentTimeMillis(), spot.getSpotType());
-        Ticket ticket = new Ticket(spot.getVehicleId(), spot.getCheckInTime(), System.currentTimeMillis(), totalFare);
+        long checkoutTime = System.currentTimeMillis();
+        double totalFare = FareCalculationService.getInstance().calculateFare(spot.getCheckInTime(), checkoutTime, spot.getSpotType());
+        Ticket ticket = new Ticket(spot.getVehicleId(), spot.getCheckInTime(), checkoutTime, totalFare);
         ParkingSpotService.getInstance().vacateSpot(spot.getId());
         System.out.println(ticket.toString());
     }

@@ -79,8 +79,6 @@ public class ParkingSpot {
 
     @Override
     public String toString() {
-        System.out.printf("%n%-8s %-6s %-6s %-12s %-12s %-10s%n", "SpotId", "FLOOR", "TYPE", "OCCUPIED", "VehicleId", "CheckInTime");
-        System.out.println("-------------------------------------------------------------");
         return String.format("%-8d %-6d %-6s %-12s %-12s %-10s",
                 this.id,
                 this.floor,
@@ -88,5 +86,21 @@ public class ParkingSpot {
                 this.isOccupied,
                 this.vehicleId,
                 this.checkInTime);
+    }
+
+    /**
+     * Returns the header string for displaying parking spots in a table format.
+     */
+    public static String getTableHeader() {
+        return String.format("%n%-8s %-6s %-6s %-12s %-12s %-10s%n", "SpotId", "FLOOR", "TYPE", "OCCUPIED", "VehicleId", "CheckInTime")
+                + "-------------------------------------------------------------";
+    }
+
+    /**
+     * Prints this parking spot with the table header.
+     */
+    public void print() {
+        System.out.println(getTableHeader());
+        System.out.println(this);
     }
 }

@@ -113,7 +113,7 @@ public class ParkingSpotService {
         return null;
     }
 
-    public ParkingSpot GetParkingSpotById(int spotId) {
+    public ParkingSpot getParkingSpotById(int spotId) {
         ensureStoreReady();
         return parkingSpotStore.read(spotId);
     }

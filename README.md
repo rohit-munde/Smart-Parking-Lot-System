@@ -177,7 +177,7 @@ Central service for managing all parking spot operations.
 | `findAppropriateSpot(VehicleType)` | Finds available spot for vehicle type |
 | `isVehicleAlreadyParked(vehicleNo)` | Checks for duplicate vehicle |
 | `assignSpot(spotId, vehicleId, vehicleNo)` | Assigns spot to vehicle |
-| `GetParkingSpotById(spotId)` | Retrieves spot by ID |
+| `getParkingSpotById(spotId)` | Retrieves spot by ID |
 
 #### `ParkingAllocationService`
 Handles the vehicle parking flow.

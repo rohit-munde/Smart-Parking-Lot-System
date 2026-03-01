@@ -2,11 +2,14 @@ import services.CheckoutService;
 import services.ParkingAllocationService;
 import utils.ErrorHandler;
 
+import java.util.Scanner;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    private final static ParkingAllocationService parkingAllocationService = new ParkingAllocationService();
-    private final static CheckoutService checkoutService = new CheckoutService();
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final ParkingAllocationService parkingAllocationService = new ParkingAllocationService(scanner);
+    private static final CheckoutService checkoutService = new CheckoutService(scanner);
     public static void main(String[] args) {
 
         utils.DataStore<models.ParkingSpot> parkingSpotStore = new utils.DataStore<>("Parking Spot");
@@ -26,7 +29,7 @@ public class Main {
                 System.out.println("0. Exit");
                 System.out.print("Enter your choice: ");
 
-                int choice = new java.util.Scanner(System.in).nextInt();
+                int choice = scanner.nextInt();
 
                 switch (choice) {
                     case 1 -> parkingSpotService.printSpotTable();

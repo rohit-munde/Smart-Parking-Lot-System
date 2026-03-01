@@ -8,7 +8,11 @@ import java.util.Scanner;
 
 public class ParkingAllocationService {
     private final ParkingSpotService parkingSpotService = ParkingSpotService.getInstance();
-    private final Scanner sc = new Scanner(System.in);
+    private final Scanner sc;
+
+    public ParkingAllocationService(Scanner scanner) {
+        this.sc = scanner;
+    }
 
     public void allocateParkingSpot() {
         Vehicle vehicle = getVehicleDetailsFromUser();

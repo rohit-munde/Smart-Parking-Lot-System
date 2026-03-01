@@ -1,11 +1,13 @@
 package utils;
 
-public class IdGenerator {
+public final class IdGenerator {
     private static int vehicleIdCounter = 1;
     private static int parkingSpotIdCounter = 1;
     private static int ticketIdCounter = 1;
 
-    public IdGenerator() {}
+    private IdGenerator() {
+        // Private constructor to prevent instantiation
+    }
 
     public static int generateVehicleId() {
         return vehicleIdCounter++;

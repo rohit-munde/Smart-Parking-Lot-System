@@ -6,7 +6,12 @@ import models.Ticket;
 import java.util.Scanner;
 
 public class CheckoutService {
-    private final Scanner sc = new Scanner(System.in);
+    private final Scanner sc;
+
+    public CheckoutService(Scanner scanner) {
+        this.sc = scanner;
+    }
+
     public void checkoutFromParkingSpot() {
         ParkingSpot spot = takeUserInputForCheckout();
         double totalFare = FareCalculationService.getInstance().calculateFare(spot.getCheckInTime(), System.currentTimeMillis(), spot.getSpotType());
@@ -21,7 +26,7 @@ public class CheckoutService {
         sc.nextLine();
 
         ParkingSpotService parkingSpotService = ParkingSpotService.getInstance();
-        ParkingSpot spot = parkingSpotService.GetParkingSpotById(spotId);
+        ParkingSpot spot = parkingSpotService.getParkingSpotById(spotId);
 
         if(spot == null) {
             throw new RuntimeException("Invalid spot ID: " + spotId);
